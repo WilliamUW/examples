@@ -44,7 +44,7 @@ function populateImages() {
     {
         url: "https://gdb.voanews.com/B13DDCE1-70D6-4CC7-B910-C7D75F213212_w1080_h608_s.jpg",
         title: 'Northern White Rhino',
-        subtitle: 'Critically Endangered - Possibly Extinct in the Wild',
+        subtitle: 'Critically Endangered - 2 Remaining',
         description: 'With an estimated 0-2 individuals left, Northern white rhinos are possibly extinct in the wild. They face threats from poaching and habitat loss.'
     },
     {
@@ -52,12 +52,6 @@ function populateImages() {
         title: 'Amur Leopard',
         subtitle: 'Critically Endangered - About 100 Remaining',
         description: 'Amur leopards are critically endangered due to habitat loss from man-made fires, poaching, and inbreeding. They are native to the forests and mountains of eastern Russia and northern China.'
-    },
-    {
-        url: "https://d1jyxxz9imt9yb.cloudfront.net/medialib/3848/image/p1300x1300/AdobeStock_384667533_431571.webp",
-        title: 'Orangutan',
-        subtitle: 'Critically Endangered - Population Unknown',
-        description: 'All three species of orangutan are critically endangered. They are threatened by hunting, fires, and habitat destruction across their range in Indonesia and Malaysia.'
     },
     {
         url: "https://d1jyxxz9imt9yb.cloudfront.net/medialib/3980/image/p1300x1300/Mignon-Gorilla5_reduced.webp",
@@ -84,12 +78,6 @@ function populateImages() {
         description: 'Kākāpōs, the world’s only flightless parrots, are critically endangered and found only in southwestern New Zealand. Conservation efforts focus on protecting their habitat and increasing their numbers through breeding programs.'
     },
     {
-        url: "https://d1jyxxz9imt9yb.cloudfront.net/medialib/3983/image/p1300x1300/AdobeStock_499583897_437480_reduced.webp",
-        title: 'Brown Spider Monkey',
-        subtitle: 'Critically Endangered - Population Decreasing',
-        description: 'Brown spider monkeys are critically endangered and face threats from hunting and habitat loss. They are known for their agility and are native to dense rainforests.'
-    },
-    {
         url: "https://d1jyxxz9imt9yb.cloudfront.net/medialib/3760/image/p1300x1300/MC201512_NARW_002_418298_reduced.webp",
         title: 'North Atlantic Right Whale',
         subtitle: 'Critically Endangered - About 340 Remaining',
@@ -101,12 +89,6 @@ function populateImages() {
         subtitle: 'Critically Endangered - Only 18 Remaining',
         description: 'Vaquitas, the smallest cetaceans, are on the brink of extinction due to fishing, habitat degradation, and climate change in the Gulf of California.'
     },
-    {
-        url: "https://d1jyxxz9imt9yb.cloudfront.net/medialib/3985/image/p1300x1300/AdobeStock_327469626_343180_reduced.webp",
-        title: 'Sunda Pangolin',
-        subtitle: 'Critically Endangered - Population Unknown',
-        description: 'Sunda pangolins are critically endangered, facing threats from illegal wildlife trade and habitat loss in their native ranges in Asia.'
-    }
 ];
 
 
