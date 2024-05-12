@@ -1,4 +1,4 @@
-use ic_cdk::api::caller;
+// use ic_cdk::api::caller;
 use ic_cdk_macros::{query, update};
 use std::collections::HashMap;
 use lazy_static::lazy_static;
@@ -21,6 +21,16 @@ fn set_owner(animal_id: String, owner_name: String) {
 fn get_owner(animal_id: String) -> String {
     let map = ANIMAL_OWNERSHIP.read().unwrap();
     map.get(&animal_id).cloned().unwrap_or_else(|| "No owner found".to_string())
+}
+
+#[query]
+fn get_all_owners() -> Vec<String> {
+    let map = ANIMAL_OWNERSHIP.read().unwrap();
+    let mut result = Vec::new(); // Change to Vec<String>
+    for (animal, owner) in map.iter() {
+        result.push(format!("{}: {}", animal, owner)); // Remove the newline character
+    }
+    result
 }
 
 // Example additional functions
