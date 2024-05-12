@@ -103,6 +103,7 @@ function populateImages() {
     var imageUrl = imageUrls[i].url;
     var title = imageUrls[i].title;
     var subtitle = imageUrls[i].subtitle;
+    var description = imageUrls[i].description;
 
     // Create card container
     var card = document.createElement('div');
@@ -139,6 +140,18 @@ function populateImages() {
 
     // Append the card to the placeholder
     placeholder.appendChild(card);
+
+    var descriptionDiv = document.getElementById("description");
+
+    // Using an IIFE to correctly bind the current description to the click event
+    (function(currentDescription) {
+        card.addEventListener("click", function() {
+            // Update the descriptionDiv with the current card's description
+            descriptionDiv.innerText = currentDescription;
+        });
+    })(description); // Pass the current description to the IIFE
+
+    
   }
 }
 
