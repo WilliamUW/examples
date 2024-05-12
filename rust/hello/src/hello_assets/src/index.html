@@ -10,7 +10,27 @@
   </head>
   <body>
     <main>
-      <img src="logo.png" alt="DFINITY logo" />
+      <div id="placeholder"></div>
+      <script>
+        // Define an array of image URLs
+        var imageUrls = [
+          "https://shop.wwf.ca/cdn/shop/files/MagoMonkeyPlush.jpg?v=1694022235&width=800",
+          "https://shop.wwf.ca/cdn/shop/files/MagoMonkeyPlush.jpg?v=1694022235&width=800",
+          "https://shop.wwf.ca/cdn/shop/files/MagoMonkeyPlush.jpg?v=1694022235&width=800",
+          // Add more image URLs here
+        ];
+
+        // Get the placeholder element where the images will be rendered
+        var placeholder = document.getElementById("placeholder");
+
+        // Loop through the image URLs and create <img> elements
+        for (var i = 0; i < imageUrls.length; i++) {
+          var imageUrl = imageUrls[i];
+          var img = document.createElement("img");
+          img.src = imageUrl;
+          placeholder.appendChild(img);
+        }
+      </script>
       <form action="#">
         <label for="name">Enter your name: &nbsp;</label>
         <input id="name" alt="Name" type="text" />
@@ -33,6 +53,7 @@
           <div class="item"></div>
         </div>
       </div>
+
       <section id="greeting"></section>
     </main>
   </body>
