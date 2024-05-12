@@ -17,12 +17,9 @@
         <!-- Your content here -->
       </div>
 
-      <form id="form1">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" name="name" type="text" alt="Name" />
-        <button type="submit">Adopt Wildlife.</button>
-    </form>
-    
+      
+    <section id="greeting"></section>
+
     <!-- Second Form -->
     <form id="form2">
         <label for="email">Enter your question: &nbsp;</label>
@@ -30,17 +27,11 @@
         <button type="submit">Ask Question.</button>
     </form>
 
-    <script type="importmap">
-      {
-        "imports": {
-          "@google/generative-ai": "https://esm.run/@google/generative-ai"
-        }
-      }
-    </script>
-    <script type="module">
-      import { GoogleGenerativeAI } from "@google/generative-ai";
-    
-        </script>
+    <form id="form1">
+      <label for="name">Enter your name: &nbsp;</label>
+      <input id="name" name="name" type="text" alt="Name" />
+      <button type="submit">Adopt Wildlife.</button>
+  </form>
     
 
       <div id="loader">
@@ -61,7 +52,6 @@
         </div>
       </div>
 
-      <section id="greeting"></section>
     </main>
   </body>
 </html>

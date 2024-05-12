@@ -28,31 +28,7 @@ let currentOwner = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   // Handling the first form submission
-  document.querySelector("#form1").addEventListener("submit", async function(e) {
-      e.preventDefault();
-  document.getElementById("greeting").innerText = "";
-  const loader = document.getElementById("loader");
-
-  const button = e.target.querySelector("button");
-
-  const name = document.querySelector("#name").value;
-  currentOwner = name;
-
-  loader.style.visibility = "visible";
-  button.setAttribute("disabled", true);
-  document.getElementById("name").setAttribute("disabled", true);
-
-  // Interact with foo actor, calling the greet method
-  const animalName = currentAnimal.title + "#" + (Math.floor(Math.random() * (100 - 10 + 1)) + 10).toString();
-  const greeting = await hello.set_owner(animalName, name);
-
-  loader.style.visibility = "hidden";
-  button.removeAttribute("disabled");
-  document.getElementById("name").removeAttribute("disabled");
-
-  alert(`Congratulations ${name}, you have successfully adopted ${animalName}! Thank you for supporting the conversation of wildlife.`);
-  return false;
-  });
+ 
 
   // Handling the second form submission
   // document.querySelector("#form2").addEventListener("submit", function(e) {
@@ -67,10 +43,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const API_KEY = "AIzaSyBgoeGvnFVqUsqT0P3NKw2dB-VMRRAnPA8";
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings });
-
+  let chat = model.startChat();
   // Handling the second form submission
   document.querySelector("#form2").addEventListener("submit", async (e) => {
     e.preventDefault(); // Prevent the default form submission action
+    if (currentAnimal === null) {
+      alert("Please select an animal first!")
+      return;
+    }
     const question = document.querySelector("#question").value;
     console.log("Question submitted:", question);
 
@@ -81,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById('greeting').innerText = "Asking the animal... " + question; 
 
       // Use the AI model to generate content based on the question
-      const result = await model.generateContent("You are the animal: " + currentAnimal.title + ". You are talking to " + currentOwner + " who has adopted you! This is your owner's question: " + question + ". What do you say to your owner? Answer concisely like a conversation (1-3 sentences). More context about your species: " + currentAnimal.subtitle + currentAnimal.description);
+      const result = await chat.sendMessage("You are the animal: " + currentAnimal.title + ". You are talking to " + currentOwner + " who has adopted you! This is your owner's question: " + question + ". What do you say to your owner? Do not include any prefixes. Answer concisely like a conversation (1-3 sentences). More context about your species: " + currentAnimal.subtitle + currentAnimal.description);
 
       console.log(result)
 
@@ -102,6 +82,32 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById('loader').style.display = 'none';
     }
   });
+
+  document.querySelector("#form1").addEventListener("submit", async function(e) {
+    e.preventDefault();
+document.getElementById("greeting").innerText = "";
+const loader = document.getElementById("loader");
+
+const button = e.target.querySelector("button");
+
+const name = document.querySelector("#name").value;
+currentOwner = name;
+
+loader.style.visibility = "visible";
+button.setAttribute("disabled", true);
+document.getElementById("name").setAttribute("disabled", true);
+
+// Interact with foo actor, calling the greet method
+const animalName = currentAnimal.title + "#" + (Math.floor(Math.random() * (100 - 10 + 1)) + 10).toString();
+const greeting = await hello.set_owner(animalName, name);
+
+loader.style.visibility = "hidden";
+button.removeAttribute("disabled");
+document.getElementById("name").removeAttribute("disabled");
+
+alert(`Congratulations ${name}, you have successfully adopted ${animalName}! Thank you for supporting the conversation of wildlife.`);
+return false;
+});
 });
 
 
