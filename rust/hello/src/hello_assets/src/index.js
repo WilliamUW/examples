@@ -16,13 +16,14 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   document.getElementById("name").setAttribute("disabled", true);
 
   // Interact with foo actor, calling the greet method
-  const greeting = await hello.greet(name);
+  const animalName = currentAnimal.title + "#" + (Math.floor(Math.random() * (100 - 10 + 1)) + 10).toString();
+  const greeting = await hello.set_owner(animalName, name);
 
   loader.style.visibility = "hidden";
   button.removeAttribute("disabled");
   document.getElementById("name").removeAttribute("disabled");
-  document.getElementById("greeting").innerText = greeting;
 
+  alert(`Congratulations ${name}, you have successfully adopted ${animalName}! Thank you for supporting the conversation of wildlife.`);
   return false;
 });
 
