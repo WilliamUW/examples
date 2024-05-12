@@ -124,12 +124,12 @@ function populateImages() {
     cardBody.className = 'card-body';
 
     // Create title element
-    var cardTitle = document.createElement('h5');
+    var cardTitle = document.createElement('h3');
     cardTitle.className = 'card-title';
     cardTitle.textContent = title;
 
     // Create subtitle element
-    var cardSubtitle = document.createElement('p');
+    var cardSubtitle = document.createElement('h5');
     cardSubtitle.className = 'card-subtitle';
     cardSubtitle.textContent = subtitle;
 
@@ -151,11 +151,15 @@ function populateImages() {
       card.addEventListener("click", function() {
         currentAnimal = animal;
         // Update the descriptionDiv with the current card's description
-        descriptionDiv.innerHTML = `
-          <h5>${animal.title}</h5>
-          <p>${animal.subtitle}</p>
-          <p>${animal.description}</p>
-          <img src="${animal.url}" alt="${animal.title}" class="card-img-top">
+        descriptionDiv.innerHTML = `<div class="card">
+        <img src="${animal.url}" alt="${animal.title}" class="card-img-top">
+
+        <div class="card-body">
+          <h3 class='card-title'>${animal.title}</h5>
+          <h5 class='card-subtitle'>${animal.subtitle}</p>
+          <h6 class='card-subtitle'>${animal.description}</p>
+          </div>
+          </div>
         `;
 
         console.log(currentAnimal);
