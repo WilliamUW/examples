@@ -30,12 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Handling the second form submission
-  document.querySelector("#form2").addEventListener("submit", function(e) {
-      e.preventDefault();  // Prevent the default form submission action
-      const question = document.querySelector("#question").value;
-      console.log("Question submitted:", question);
-      // Further processing for the second form
-  });
+  // document.querySelector("#form2").addEventListener("submit", function(e) {
+  //     e.preventDefault();  // Prevent the default form submission action
+  //     const question = document.querySelector("#question").value;
+  //     console.log("Question submitted:", question);
+  //     // Further processing for the second form
+  // });
 });
 
 

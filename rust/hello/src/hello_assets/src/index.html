@@ -30,6 +30,58 @@
         <button type="submit">Ask Question.</button>
     </form>
 
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+    
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Initialize the AI model
+        const API_KEY = "..."; // Be cautious with exposing API keys directly in your client-side code
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    
+        // Handling the second form submission
+        document.querySelector("#form2").addEventListener("submit", async (e) => {
+          e.preventDefault(); // Prevent the default form submission action
+          const question = document.querySelector("#question").value;
+          console.log("Question submitted:", question);
+    
+          // Display loading indicator
+          document.getElementById('loader').style.display = 'block';
+    
+          try {
+            // Use the AI model to generate content based on the question
+            const result = await model.generateContent(question);
+
+            console.log(result)
+    
+            const response = await result.response;
+
+            console.log(response)
+
+            const text = await response.text();
+    
+            // Display the generated content
+            document.getElementById('greeting').innerText = text;
+            console.log("Generated Content:", text);
+          } catch (error) {
+            console.error("Error in generating content:", error);
+            document.getElementById('greeting').innerText = 'Error generating response. Please try again.';
+          } finally {
+            // Hide loading indicator
+            document.getElementById('loader').style.display = 'none';
+          }
+        });
+      });
+    </script>
+    
+
       <div id="loader">
         Please Wait
         <div class="lds-default">
