@@ -131,3 +131,26 @@ button[type="submit"] {
     transform: scale(1.5);
   }
 }
+
+.card {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 10px;
+  width: 300px; /* or any desired width */
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-title {
+  margin-bottom: 10px;
+}
+
+.card-subtitle {
+  color: #666;
+}
