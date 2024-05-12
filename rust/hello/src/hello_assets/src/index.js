@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener("DOMContentLoaded", async () => {
   // Initialize the AI model
-  const API_KEY = "..."; // Be cautious with exposing API keys directly in your client-side code
+  const API_KEY = "AIzaSyBgoeGvnFVqUsqT0P3NKw2dB-VMRRAnPA8";
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings });
 
@@ -78,8 +78,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById('loader').style.display = 'block';
 
     try {
+      document.getElementById('greeting').innerText = "Asking the animal... " + question; 
+
       // Use the AI model to generate content based on the question
-      const result = await model.generateContent("Pretend you are the animal: " + currentAnimal.toString() + ". You are talking to " + currentOwner + " who has adopted you! This is their reply: " + question);
+      const result = await model.generateContent("You are the animal: " + currentAnimal.title + ". You are talking to " + currentOwner + " who has adopted you! This is your owner's question: " + question + ". What do you say to your owner? Answer concisely like a conversation (1-3 sentences). More context about your species: " + currentAnimal.subtitle + currentAnimal.description);
 
       console.log(result)
 
