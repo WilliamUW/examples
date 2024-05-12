@@ -1,4 +1,6 @@
 service : {
+    "set_owner" : (text, text) -> () oneway;
+    "get_owner" : (text) -> (text) query;
     "greet" : (text) -> (text) query;
     "intro" : (text) -> (text) query;
 };
