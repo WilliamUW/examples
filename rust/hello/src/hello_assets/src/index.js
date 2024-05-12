@@ -1,6 +1,30 @@
+import { HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { hello } from "../../declarations/hello";
 
+// ...
+
+const safetySettings = [
+  {
+    category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+];
 let currentAnimal = null;
+let currentOwner = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   // Handling the first form submission
@@ -12,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const button = e.target.querySelector("button");
 
   const name = document.querySelector("#name").value;
+  currentOwner = name;
 
   loader.style.visibility = "visible";
   button.setAttribute("disabled", true);
@@ -36,6 +61,45 @@ document.addEventListener("DOMContentLoaded", () => {
   //     console.log("Question submitted:", question);
   //     // Further processing for the second form
   // });
+});
+document.addEventListener("DOMContentLoaded", async () => {
+  // Initialize the AI model
+  const API_KEY = "..."; // Be cautious with exposing API keys directly in your client-side code
+  const genAI = new GoogleGenerativeAI(API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings });
+
+  // Handling the second form submission
+  document.querySelector("#form2").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent the default form submission action
+    const question = document.querySelector("#question").value;
+    console.log("Question submitted:", question);
+
+    // Display loading indicator
+    document.getElementById('loader').style.display = 'block';
+
+    try {
+      // Use the AI model to generate content based on the question
+      const result = await model.generateContent("Pretend you are the animal: " + currentAnimal.toString() + ". You are talking to " + currentOwner + " who has adopted you! This is their reply: " + question);
+
+      console.log(result)
+
+      const response = await result.response;
+
+      console.log(response)
+
+      const text = await response.text();
+
+      // Display the generated content
+      document.getElementById('greeting').innerText = text;
+      console.log("Generated Content:", text);
+    } catch (error) {
+      console.error("Error in generating content:", error);
+      document.getElementById('greeting').innerText = 'Error generating response. Please try again.';
+    } finally {
+      // Hide loading indicator
+      document.getElementById('loader').style.display = 'none';
+    }
+  });
 });
 
 
