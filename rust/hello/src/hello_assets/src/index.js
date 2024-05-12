@@ -148,13 +148,18 @@ function populateImages() {
 
     // Using an IIFE to correctly bind the current description to the click event
     (function(animal) {
-        card.addEventListener("click", function() {
-            currentAnimal = animal;
-            // Update the descriptionDiv with the current card's description
-            descriptionDiv.innerText = animal.description;
+      card.addEventListener("click", function() {
+        currentAnimal = animal;
+        // Update the descriptionDiv with the current card's description
+        descriptionDiv.innerHTML = `
+          <h5>${animal.title}</h5>
+          <p>${animal.subtitle}</p>
+          <p>${animal.description}</p>
+          <img src="${animal.url}" alt="${animal.title}" class="card-img-top">
+        `;
 
-            console.log(currentAnimal);
-        });
+        console.log(currentAnimal);
+      });
     })(animal); // Pass the current description to the IIFE
 
     
