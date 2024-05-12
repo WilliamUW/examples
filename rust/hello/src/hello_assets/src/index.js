@@ -2,14 +2,16 @@ import { hello } from "../../declarations/hello";
 
 let currentAnimal = null;
 
-document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  // Handling the first form submission
+  document.querySelector("#form1").addEventListener("submit", async function(e) {
+      e.preventDefault();
   document.getElementById("greeting").innerText = "";
   const loader = document.getElementById("loader");
 
   const button = e.target.querySelector("button");
 
-  const name = document.getElementById("name").value.toString();
+  const name = document.querySelector("#name").value;
 
   loader.style.visibility = "visible";
   button.setAttribute("disabled", true);
@@ -25,7 +27,17 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
   alert(`Congratulations ${name}, you have successfully adopted ${animalName}! Thank you for supporting the conversation of wildlife.`);
   return false;
+  });
+
+  // Handling the second form submission
+  document.querySelector("#form2").addEventListener("submit", function(e) {
+      e.preventDefault();  // Prevent the default form submission action
+      const email = document.querySelector("#question").value;
+      console.log("Question submitted:", email);
+      // Further processing for the second form
+  });
 });
+
 
 
 function populateImages() {
