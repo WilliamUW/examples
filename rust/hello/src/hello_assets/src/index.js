@@ -1,5 +1,7 @@
 import { hello } from "../../declarations/hello";
 
+let currentAnimal = null;
+
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   document.getElementById("greeting").innerText = "";
@@ -100,6 +102,7 @@ function populateImages() {
 
   // Loop through the image URLs and create card elements
   for (var i = 0; i < imageUrls.length; i++) {
+    let animal = imageUrls[i];
     var imageUrl = imageUrls[i].url;
     var title = imageUrls[i].title;
     var subtitle = imageUrls[i].subtitle;
@@ -144,12 +147,15 @@ function populateImages() {
     var descriptionDiv = document.getElementById("description");
 
     // Using an IIFE to correctly bind the current description to the click event
-    (function(currentDescription) {
+    (function(animal) {
         card.addEventListener("click", function() {
+            currentAnimal = animal;
             // Update the descriptionDiv with the current card's description
-            descriptionDiv.innerText = currentDescription;
+            descriptionDiv.innerText = animal.description;
+
+            console.log(currentAnimal);
         });
-    })(description); // Pass the current description to the IIFE
+    })(animal); // Pass the current description to the IIFE
 
     
   }
